@@ -10,7 +10,7 @@ This is a LINUX-Script. It was created to download requested sequences from the 
 #Before you start you have to install edirect in your command line, therefore copy the following terms in your Command Line:
 #Further information on: https://www.ncbi.nlm.nih.gov/books/NBK179288/
 
-'''
+```
 cd ~
   /bin/bash
   perl -MNet::FTP -e \
@@ -24,7 +24,7 @@ cd ~
   ./edirect/setup.sh
   
    echo "export PATH=\$PATH:\$HOME/edirect" >> $HOME/.bash_profile
-'''
+```
    
 #Also install the programs you need in order to run the script. Just tipe following and follow the instructions in the Command Line:
 clustalw
@@ -40,7 +40,7 @@ install.packages('phangorn')
 ##Description of the Steps:
    
 #Step1: Downloading DNA Sequences from the database (NCBI) and creating a masterfile with all the DNA sequences of the requested species
- '''
+```
 #Ask user to enter species name
 read -p "Enter species name: " specname1
 #Print species name while waiting for next steps to be run (file to be created)
@@ -48,9 +48,9 @@ echo -e "Getting $specname1 DNA"
 
 #For entered species name, download DNA sequences from database (NCBI/GenBank) and create a fastafile per species.
 esearch -db Nucleotide -query "$specname1" | efetch -format fasta >> ~/Documents/"$specname1".fasta
-'''
+```
 #The program will ask if there are more species to be entered using while loop
-'''
+```
 while [ -z "$REPLY" ] ; do 
 	if [ -z "$1" ] ; then 
 		read -p "Do you want to enter another species?(Yes/No): "
@@ -75,30 +75,30 @@ while [ -z "$REPLY" ] ; do
 			echo "Combining all species into one file and starting alignment"
 	esac
 done
-'''
+```
 #Rename all files; replace all spaces in filenames by underscores, to make it possible to search for and combine  all species DNA into one file
-'''
+```
 rename -f 's/ /_/g' ~/Documents/*.fasta
 cat ~/Documents/*.fasta > ~/Documents/allseq.fasta
-'''
+```
    
 #Step2: Aligning sequences
-'''
+```
 clustalw -INFILE=allseq.fasta -TYPE=DNA -OUTFILE=out_allseq.phy -OUTPUT=PHYLIP
-'''
+```
    
 #Step3: Estimating the most suitable tree
-'''
+```
 phyml -i out_allseq.phy -d nt -n 1 -m HKY85
-'''
+```
    
 #Step4: Plotting & saving the tree with R, the Command Line calls R with the following command
-'''
+```
 Rscript plotTree.r
-'''
+```
 
 #After R was called, the following script runs (plotTree.r)
-'''
+```
 setwd('~/Documents/')
 
 #Again, make sure packages are installed
@@ -120,7 +120,7 @@ MyTree <- read.tree("out_allseq.phy_phyml_tree")
 pdf("Tree.pdf")
 plot(MyTree)
 dev.off()
-'''
+```
 ##Scripts
 1. [.sh](finalfile.sh)
 2. [.r](plotTree.r)
