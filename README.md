@@ -120,7 +120,6 @@ pdf("Tree.pdf")
 plot(MyTree)
 dev.off()
 '''
-
-   ##Scripts
-finalfile.sh
-plotTree.r
+##Scripts
+1. finalfile.sh
+2. plotTree.r
