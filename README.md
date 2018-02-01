@@ -9,6 +9,7 @@ This is a LINUX-Script. It was created to download requested sequences from the 
 
 #Before you start you have to install edirect in your command line, therefore copy the following terms in your Command Line:
 #Further information on: https://www.ncbi.nlm.nih.gov/books/NBK179288/
+
 '''
 cd ~
   /bin/bash
