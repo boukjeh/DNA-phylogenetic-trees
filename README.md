@@ -122,3 +122,5 @@ dev.off()
 '''
 
    ##Scripts
+finalfile.sh
+plotTree.r
