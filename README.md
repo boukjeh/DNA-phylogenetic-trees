@@ -8,6 +8,7 @@ Read this whole file before useing the script!
 
 This is a LINUX-Script. It was created to download requested sequences from the database NCBI/GenBank, to align these and in addition to plot a phylogenetic tree from the data. The script downloads the sequences from one or several species and combines them all into a masterfile, called allseq.fasta. This file is going to be aligned and estimated, before the script changes to R, where a second script will run (plotTree.r) to plot the phylogenetic tree. This tree will be saved as a PDF.
 
+
 #Before you start you have to install edirect in your command line, therefore copy the following terms in your Command Line:
 
 #Further information on: https://www.ncbi.nlm.nih.gov/books/NBK179288/
@@ -33,7 +34,8 @@ cd ~
 clustalw
 
 phyml
-   
+ 
+ 
 #In order to run the R script, make sure the following packages are installed in R:
 
 install.packages('devtools')
@@ -42,9 +44,12 @@ install.packages('ape')
 
 install.packages('phangorn')
    
+   
 #If you run the following script your main directory is the Documents folder, so be sure that you have downloaded all necessary files in this Documents folder!
    
+   
 ##Description of the Steps:
+   
    
 #Step1: Downloading DNA Sequences from the database (NCBI) and creating a masterfile with all the DNA sequences of the requested species
 ```
