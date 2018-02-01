@@ -27,13 +27,13 @@ cd ~
 ```
    
 #Also install the programs you need in order to run the script. Just tipe following and follow the instructions in the Command Line:
-clustalw
-phyml
+#clustalw
+#phyml
    
 #In order to run the R script, make sure the following packages are installed in R:
-install.packages('devtools')
-install.packages('ape')
-install.packages('phangorn')
+#install.packages('devtools')
+#install.packages('ape')
+#install.packages('phangorn')
    
 #If you run the following script your main directory is the Documents folder, so be sure that you have downloaded all necessary files in this Documents folder!
    
