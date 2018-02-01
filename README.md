@@ -121,5 +121,5 @@ plot(MyTree)
 dev.off()
 '''
 ##Scripts
-1. finalfile.sh
-2. plotTree.r
+1. [.sh](finalfile.sh)
+2. [.r](plotTree.r)
