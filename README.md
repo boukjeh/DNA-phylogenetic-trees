@@ -99,26 +99,29 @@ Rscript plotTree.r
 
 #After R was called, the following script runs (plotTree.r)
 ```
-setwd('~/Documents/')
+#Set the working directory
+#Make sure the files from the Bash script or in the same directory
+setwd('/home/boukje/Documents/')
 
-#Again, make sure packages are installed
-#Install devtool package in order to install packages for APE
+#Make sure all packages are installed
+#Install if needed and load packages.
+
+#devtool package need in order to install phangorn
 #install.packages('devtools')
 
 #Install packages that provide the basis for manipulating sequence data in R: ape and phangorn.
 #install.packages("ape")
 #install.packages("phangorn")
-#install.packages("seqinr")
 
-#Call packages
+#Load packages
 library(ape)
 library(phangorn)
-library(seqinr)
 
-#create a tree after aligning with clustal and estimating tree with phyml
+#Create the tree after aligning with clustal and estimating tree with phyml
 MyTree <- read.tree("out_allseq.phy_phyml_tree")
-pdf("Tree.pdf")
-plot(MyTree)
+colors <- rainbow(Nedge(MyTree)) #add colors to the branches
+plot(MyTree, edge.color=colors)
+pdf("Tree.pdf") #saving the plot as a pdf
 dev.off()
 ```
 ##Scripts
