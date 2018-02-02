@@ -4,7 +4,7 @@
 
 Read this whole file before useing the script!
 
-##Description:
+## Description:
 
 This is a LINUX-Script. It was created to download requested sequences from the database NCBI/GenBank, to align these and in addition to plot a phylogenetic tree from the data. The script downloads the sequences from one or several species and combines them all into a masterfile, called allseq.fasta. This file is going to be aligned and estimated, before the script changes to R, where a second script will run (plotTree.r) to plot the phylogenetic tree. This tree will be saved as a PDF.
 
