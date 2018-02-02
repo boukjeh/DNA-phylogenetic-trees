@@ -80,9 +80,6 @@ while [ -z "$REPLY" ] ; do
 			unset REPLY ;;
 		[Nn]o) #if no more species to be entered, continue with rest of script
 			echo -e "Continuing...\n"
-			#Print an overview of the number of sequences in each file
-			echo "Number of sequences per file: "
-			grep -c ">" ~/Documents/*.fasta
 			#Print the next steps that will be run
 			echo "Combining all species into one file and starting alignment"
 	esac
@@ -136,6 +133,15 @@ plot(MyTree, edge.color=colors)
 pdf("Tree.pdf") #saving the plot as a pdf
 dev.off()
 ```
+To end the program nicely an overview is printed to screen with the number of sequences in each file, and the name of the file which contains the tree.
+```
+#Final prints:
+#Print an overview of the number of sequences in each file
+echo -e "\nNumber of sequences per file: "
+grep -c ">" ~/Documents/*.fasta
+
+echo -e "\nTree plotted with R and saved as Tree.pdf"
+```
 ##Scripts
-1. [.sh](finalfile.sh)
-2. [.r](plotTree.r)
+1. [finalfile.sh](finalfile.sh)
+2. [plotTree.r](plotTree.r)
