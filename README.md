@@ -9,9 +9,10 @@ Read this whole file before useing the script!
 This is a LINUX-Script. It was created to download requested sequences from the database NCBI/GenBank, to align these and in addition to plot a phylogenetic tree from the data. The script downloads the sequences from one or several species and combines them all into a masterfile, called allseq.fasta. This file is going to be aligned and estimated, before the script changes to R, where a second script will run (plotTree.r) to plot the phylogenetic tree. This tree will be saved as a PDF.
 
 
-#Before you start you have to install edirect in your command line, therefore copy the following terms in your Command Line:
+## Before starting the script:
+Install Edirect, therefore copy the following terms in your Command Line:
 
-#Further information on: https://www.ncbi.nlm.nih.gov/books/NBK179288/
+Further information on: https://www.ncbi.nlm.nih.gov/books/NBK179288/
 
 ```
 cd ~
@@ -29,14 +30,14 @@ cd ~
    echo "export PATH=\$PATH:\$HOME/edirect" >> $HOME/.bash_profile
 ```
    
-#Also install the programs you need in order to run the script. Just tipe following and follow the instructions in the Command Line:
+Also install the programs you need in order to run the script. Just tipe following and follow the instructions in the Command Line:
 
 clustalw
 
 phyml
  
  
-#In order to run the R script, make sure the following packages are installed in R:
+In order to run the R script, make sure the following packages are installed in R:
 
 install.packages('devtools')
 
@@ -45,13 +46,14 @@ install.packages('ape')
 install.packages('phangorn')
    
    
-#If you run the following script your main directory is the Documents folder, so be sure that you have downloaded all necessary files in this Documents folder!
+If you run the following script your main directory is the Documents folder, so be sure that you have downloaded all necessary files in this Documents folder!
    
    
-##Description of the Steps:
+## Description of the Steps:
    
    
-#Step1: Downloading DNA Sequences from the database (NCBI) and creating a masterfile with all the DNA sequences of the requested species
+## Step1: 
+Downloading DNA Sequences from the database (NCBI) and creating a masterfile with all the DNA sequences of the requested species
 ```
 #Ask user to enter species name
 read -p "Enter species name: " specname1
@@ -61,7 +63,7 @@ echo -e "Getting $specname1 DNA"
 #For entered species name, download DNA sequences from database (NCBI/GenBank) and create a fastafile per species.
 esearch -db Nucleotide -query "$specname1" | efetch -format fasta >> ~/Documents/"$specname1".fasta
 ```
-#The program will ask if there are more species to be entered using while loop
+The program will ask if there are more species to be entered using while loop and case statement
 ```
 while [ -z "$REPLY" ] ; do 
 	if [ -z "$1" ] ; then 
@@ -85,28 +87,31 @@ while [ -z "$REPLY" ] ; do
 	esac
 done
 ```
-#Rename all files; replace all spaces in filenames by underscores, to make it possible to search for and combine  all species DNA into one file
+Renaming all files; replace all spaces in filenames by underscores, to make it possible to search for and combine  all species DNA into one file
 ```
 rename -f 's/ /_/g' ~/Documents/*.fasta
 cat ~/Documents/*.fasta > ~/Documents/allseq.fasta
 ```
    
-#Step2: Aligning sequences
+## Step2: 
+Aligning sequences
 ```
 clustalw -INFILE=allseq.fasta -TYPE=DNA -OUTFILE=out_allseq.phy -OUTPUT=PHYLIP
 ```
    
-#Step3: Estimating the most suitable tree
+## Step3: 
+Estimating the most suitable tree
 ```
 phyml -i out_allseq.phy -d nt -n 1 -m HKY85
 ```
    
-#Step4: Plotting & saving the tree with R, the Command Line calls R with the following command
+## Step4: 
+Plotting & saving the tree with R, the Command Line calls R with the following command
 ```
 Rscript plotTree.r
 ```
 
-#After R was called, the following script runs (plotTree.r)
+After R was called, the following script runs (plotTree.r)
 ```
 #Set the working directory
 #Make sure the files from the Bash script or in the same directory
@@ -142,6 +147,6 @@ grep -c ">" ~/Documents/*.fasta
 
 echo -e "\nTree plotted with R and saved as Tree.pdf"
 ```
-##Scripts
+## Scripts
 1. [finalfile.sh](finalfile.sh)
 2. [plotTree.r](plotTree.r)
