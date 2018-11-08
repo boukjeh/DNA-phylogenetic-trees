@@ -2,7 +2,7 @@
 *Written by Tamara Gademann & Boukje Heidstra*
 #01.02.2018, University of Groningen
 
-Read this whole file before useing the script!
+Read this whole file before using the script!
 
 ## Description:
 
@@ -30,7 +30,7 @@ cd ~
    echo "export PATH=\$PATH:\$HOME/edirect" >> $HOME/.bash_profile
 ```
    
-Also install the programs you need in order to run the script. Just tipe following and follow the instructions in the Command Line:
+Also install the programs you need in order to run the script. Just type following and follow the instructions in the Command Line:
 
 clustalw
 
