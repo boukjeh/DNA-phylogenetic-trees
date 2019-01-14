@@ -1,16 +1,18 @@
 # Using the Command Line to build a phylogenetic tree with NCBI Data
 *Written by Tamara Gademann & Boukje Heidstra*
+
 #01.02.2018, University of Groningen
 
-Read this whole file before useing the script!
+Please read this whole file before using the script!
 
 ## Description:
 
-This is a LINUX-Script. It was created to download requested sequences from the database NCBI/GenBank, to align these and in addition to plot a phylogenetic tree from the data. The script downloads the sequences from one or several species and combines them all into a masterfile, called allseq.fasta. This file is going to be aligned and estimated, before the script changes to R, where a second script will run (plotTree.r) to plot the phylogenetic tree. This tree will be saved as a PDF.
+This is a LINUX-script which was created during the Bioinformatics for Biologists course at the University of Groningen.
+With this script you are able to download nucleotide sequences from the NCBI/GenBank database, to align them and in addition to plot a phylogenetic tree from the data. The script downloads the sequences from one or several species and combines them all into a masterfile, called allseq.fasta. This file is going to be aligned and estimated, before the script changes to R, where a second script will run (plotTree.r) to plot the phylogenetic tree. This tree will be saved as a PDF.
 
 
-## Before starting the script:
-Install Edirect, therefore copy the following terms in your Command Line:
+## Make sure that Edirect is installed before using the script:
+To install Edirect; copy the following terms in your Command Line:
 
 Further information on: https://www.ncbi.nlm.nih.gov/books/NBK179288/
 
@@ -30,7 +32,7 @@ cd ~
    echo "export PATH=\$PATH:\$HOME/edirect" >> $HOME/.bash_profile
 ```
    
-Also install the programs you need in order to run the script. Just tipe following and follow the instructions in the Command Line:
+Also make sure the programs ClustalW and Phyml are installed in order to run the script. If not installed; type the following and follow the instructions in the Command Line:
 
 clustalw
 
@@ -46,7 +48,7 @@ install.packages('ape')
 install.packages('phangorn')
    
    
-If you run the following script your main directory is the Documents folder, so be sure that you have downloaded all necessary files in this Documents folder!
+The main directory of this script is the Documents folder. Change the path if preffered. 
    
    
 ## Description of the Steps:
@@ -87,7 +89,7 @@ while [ -z "$REPLY" ] ; do
 	esac
 done
 ```
-Renaming all files; replace all spaces in filenames by underscores, to make it possible to search for and combine  all species DNA into one file
+Renaming all files; replace all spaces in filenames by underscores, to make it possible to search for and combine all species sequences into one file.
 ```
 rename -f 's/ /_/g' ~/Documents/*.fasta
 cat ~/Documents/*.fasta > ~/Documents/allseq.fasta
@@ -138,7 +140,7 @@ plot(MyTree, edge.color=colors)
 pdf("Tree.pdf") #saving the plot as a pdf
 dev.off()
 ```
-To end the program nicely an overview is printed to screen with the number of sequences in each file, and the name of the file which contains the tree.
+To end the program nicely, an overview is printed to the screen with the number of sequences in each file, and the name of the file which contains the tree.
 ```
 #Final prints:
 #Print an overview of the number of sequences in each file
